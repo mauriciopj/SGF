@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SGF - Login</title>
+    <!-- Bootstrap core CSS-->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="{{ url_for('static', filename='css/sb-admin.css') }}" rel="stylesheet">
+    <!-- ShortCut -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/shortcut.png') }}">
+    <script type="text/javascript">
+      function TriggerAlertClose() {
+        window.setTimeout(function () {
+          $(".alert").fadeTo(300, 0).slideUp(300, function () {
+            $(this).remove();
+          });
+        }, 2500);
+      }
+    </script>
+  </head>
+  <body class="bg-dark" onload="TriggerAlertClose()">
+
+    <div class="container">
+      <div class="card card-login mx-auto mt-5">
+        <div class="card-header"><strong>SGF</strong> - Sistema Gestor de Feirantes</div>
+        <div class="card-body">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="{{ category }}">
+                  {{ message }}
+                  <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          <form action="{{ url_for('fazerLogin') }}" method="POST">
+            <div class="form-group">
+              <div class="form-label-group">
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" maxlenght="150" required="required" autofocus="autofocus">
+                <label for="email">Email</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-label-group">
+                <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" minlength="5" required="required">
+                <label for="senha">Digite sua senha</label>
+              </div>
+            </div>
+            <input class="btn btn-primary btn-block" type="submit" value="Fazer Login">
+          </form>
+          <div class="text-center">
+            <a class="d-block small mt-3" href="register.html">Criar conta</a>
+            <a class="d-block small" href="forgot-password.html">Esqueceu a senha?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ url_for('static', filename='js/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+  </body>
+</html>

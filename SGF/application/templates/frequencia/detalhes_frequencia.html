@@ -1,0 +1,54 @@
+{% extends "layout/layout.html" %}
+{% block title %}Detalhes da Frequência{% endblock %}
+{% block breadcrumbs %}Detalhes da Frequência{% endblock %}
+{% block body %}
+<div class="card">
+  <div class="card-header"><b>Detalhes da Frequência - Realizada em: {{ freq.dataHora }}</b></div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">CPF</th>
+            <th scope="col">Sócio</th>
+            <th scope="col" class="text-center" width="80">Presente</th>
+            <th scope="col" class="text-center" width="80">Ausente</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for lista in listas if lista.idFrequencia == freq.idFrequencia: %}
+            {% for socio in socios if socio.idSocio == lista.idSocio: %}
+          <tr>
+            <th scope="row">{{ socio.cpf }}</th>
+            <td>{{ socio.nome }}</td>
+            {% if lista.status == "Presente": %}
+              <td>
+                <div align="center">
+                  <label>
+                    <input type="radio" class="option-input radio" name="{{ socio.idSocio }}" value="Presente" checked/>
+                  </label>
+                </div>
+              </td>
+              <td></td>
+            {% else: %}
+              <td></td>
+              <td>
+                <div align="center">
+                  <label>
+                    <input type="radio" class="option-input radio" name="{{ socio.idSocio }}" value="Ausente" checked/>
+                  </label>
+                </div>
+              </td>
+            {% endif %}
+          </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table><hr>
+    </div>
+    <div class="text-right">
+      <a href="{{ url_for('listarFrequencia') }}"><input class="btn btn-dark" type="button" value="Voltar"></a><br>
+    </div>
+  </div>
+</div>
+{% endblock %}

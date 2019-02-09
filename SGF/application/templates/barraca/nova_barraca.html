@@ -1,0 +1,47 @@
+{% extends "layout/layout.html" %}
+{% block title %}Nova Barraca{% endblock %}
+{% block breadcrumbs %}Nova Barraca{% endblock %}
+{% block body %}
+<div class="card">
+  <div class="card-header"><b>Nova barraca</b></div>
+  <div class="card-body">
+    <form action="{{ url_for('cadastrarBarraca') }}" method="POST">
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-3">
+            <div class="form-label-group">
+              <input type="text" id="identificacao" name="identificacao" class="form-control" placeholder="Identificação" minlength="1" maxlength="20" required="required" autofocus="autofocus">
+              <label for="identificacao">Identificação</label>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="form-label-group">
+              <input type="text" id="descricao" name="descricao" class="form-control" placeholder="Descrição" maxlength="150" required="required">
+              <label for="descricao">Descrição</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" id="tamanho" name="tamanho" class="form-control" placeholder="Tamanho" maxlength="20" required="required">
+              <label for="tamanho">Tamanho</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" id="localizacao" name="localizacao" class="form-control" placeholder="Localização" maxlength="20" required="required">
+              <label for="localizacao">Localização</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <input class="btn btn-primary" type="submit" value="Cadastrar">
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

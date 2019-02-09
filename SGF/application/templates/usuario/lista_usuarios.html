@@ -1,0 +1,35 @@
+{% extends "layout/layout.html" %}
+{% block title %}Registro de Usuários{% endblock %}
+{% block breadcrumbs %}Registro de Usuários{% endblock %}
+{% block body %}
+<div class="card">
+  <div class="card-header"><b>Registro de Usuários</b></div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">Email</th>
+          <th scope="col">Endereço</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <th scope="row">{{ user.idUsuario }}</th>
+          <td>{{ user.nome }}</td>
+          <td>{{ user.telefone }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.endereco }}</td>
+          <td><a href="{{ url_for('deletarUsuario',id=user.idUsuario) }}" class="btn btn-danger">Excluir</a></td>
+          <td><a href="{{ url_for('editarUsuario',id=user.idUsuario) }}" class="btn btn-secondary">Editar</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

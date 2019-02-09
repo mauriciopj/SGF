@@ -1,0 +1,49 @@
+{% extends "layout/layout.html" %}
+{% block title %}Frequências{% endblock %}
+{% block breadcrumbs %}Frequências{% endblock %}
+{% block body %}
+<div class="card">
+  <div class="card-header"><b>Frequências</b></div>
+  <div class="card-body">
+    <form action="{{ url_for('registrarFrequencia') }}" method="POST">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#ID Lista</th>
+              <th scope="col">Realizada em:</th>
+              <th scope="col">Usuário</th>
+              <th scope="col" colspan="3">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for freq in frequencias: %}
+            <tr>
+              <th scope="row">{{ freq.idFrequencia }}</th>
+              <td>
+                {{ freq.dataHora }}<br>
+                {% if freq.dataHoraMod != None %}
+                <font color="#00CFFF" size="1">
+                  Modificado em: {{ freq.dataHoraMod }} por
+                  {% for usuario in usuarios if usuario.idUsuario == freq.idUsuarioMod: %}
+                      {{ usuario.nome }}
+                  {% endfor %}
+                {% endif %}
+                </font>
+              </td>
+              <td>
+                {% for usuario in usuarios if usuario.idUsuario == freq.idUsuario: %}
+                    {{ usuario.nome }}
+                {% endfor %}
+              </td>
+              <td width="100"><a class="btn btn-info" href="{{ url_for('editarFrequencia',id=freq.idFrequencia,opcao='readonly') }}">Detalhes</a></td>
+              <td width="100"><a class="btn btn-secondary" href="{{ url_for('editarFrequencia',id=freq.idFrequencia,opcao='edicao') }}">Editar</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

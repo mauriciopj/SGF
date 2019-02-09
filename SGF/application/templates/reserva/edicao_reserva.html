@@ -1,0 +1,53 @@
+{% extends "layout/layout.html" %}
+{% block title %}Editar Reserva{% endblock %}
+{% block breadcrumbs %}Editar Reserva{% endblock %}
+{% block body %}
+<div class="card card-register">
+  <div class="card-header"><b>Editar Reserva</b></div>
+  <div class="card-body">
+    <form action="" method="POST">
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-12">
+            <div class="form-label-group">
+              &nbsp; Sócio:
+              <select class="custom-select" id="idSocio" name="idSocio">
+                <option></option>
+                {% for socio in socios: %}
+                    {% if socio.idSocio == reserva.idSocio: %}
+                      <option value="{{ socio.idSocio }}" selected="selected">CPF: {{ socio.cpf }} - {{ socio.nome }}</option>
+                    {% else: %}
+                      <option value="{{ socio.idSocio }}">CPF: {{ socio.cpf }} - {{ socio.nome }}</option>
+                    {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-12">
+            <div class="form-label-group">
+              &nbsp; Barracas disponíveis:
+              <select class="custom-select" id="idBarraca" name="idBarraca">
+                {% for barraca in barracas %}
+                  {% if barraca.idBarraca == reserva.idBarraca: %}
+                    <option value="{{ barraca.idBarraca }}" selected="selected">ID: {{ barraca.identificacao }} - {{ barraca.localizacao }} - Tam: {{ barraca.tamanho }} | {{ barraca.descricao }}</option>
+                  {% else: %}
+                    <option value="{{ barraca.idBarraca }}">ID: {{ barraca.identificacao }} - {{ barraca.localizacao }} - Tam: {{ barraca.tamanho }} | {{ barraca.descricao }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <a href="{{ url_for('home') }}"><input class="btn btn-secondary" type="button" value="Cancelar"></a>
+        <input class="btn btn-primary" type="submit" value="Salvar Alterações">
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

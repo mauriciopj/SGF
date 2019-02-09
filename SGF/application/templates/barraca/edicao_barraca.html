@@ -1,0 +1,47 @@
+{% extends "layout/layout.html" %}
+{% block title %}Editar Barraca{% endblock %}
+{% block breadcrumbs %}Editar Barraca{% endblock %}
+{% block body %}
+<div class="card">
+  <div class="card-header"><b>Editar Barraca</b></div>
+  <div class="card-body">
+    <form action="" method="POST">
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-3">
+            <div class="form-label-group">
+              <input type="text" id="identificacao" name="identificacao" class="form-control" value="{{ barraca.identificacao }}" placeholder="Identificação" minlength="1" maxlength="20" required="required" autofocus="autofocus">
+              <label for="identificacao">Identificação</label>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="form-label-group">
+              <input type="text" id="descricao" name="descricao" class="form-control" value="{{ barraca.descricao }}" placeholder="Descrição" maxlength="150" required="required">
+              <label for="descricao">Descrição</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" id="tamanho" name="tamanho" class="form-control" value="{{ barraca.tamanho }}" placeholder="Tamanho" maxlength="20" required="required">
+              <label for="tamanho">Tamanho</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-label-group">
+              <input type="text" id="tamanho" name="localizacao" class="form-control" value="{{ barraca.localizacao }}" placeholder="Localização" maxlength="20" required="required">
+              <label for="localizacao">Localização</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <input class="btn btn-primary" type="submit" value="Salvar Alterações">
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

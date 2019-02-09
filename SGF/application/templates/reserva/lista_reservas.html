@@ -1,0 +1,47 @@
+{% extends "layout/layout.html" %}
+{% block title %}Reservas de Barracas{% endblock %}
+{% block breadcrumbs %}Reservas de Barracas{% endblock %}
+{% block body %}
+<div class="card">
+  <div class="card-header"><b>Reservas de Barracas</b></div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#ID</th>
+          <th scope="col">Sócio</th>
+          <th scope="col">Barraca</th>
+          <th scope="col">Data/Hora</th>
+          <th scope="col">Usuário</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for reserva in reservas %}
+        <tr>
+          <th scope="row">{{ reserva.idReserva }}</th>
+          <td>{% for socio in socios: %}
+                {% if socio.idSocio == reserva.idSocio: %}
+                    CPF: {{ socio.cpf }} - {{ socio.nome }}
+                {% endif %}
+              {% endfor %}</td>
+          <td>{% for barraca in barracas: %}
+                {% if barraca.idBarraca == reserva.idBarraca: %}
+                    {{ barraca.identificacao }} - {{ barraca.localizacao }}
+                {% endif %}
+              {% endfor %}</td>
+          <td>{{ reserva.dataHora }}</td>
+          <td>{% for usuario in usuarios: %}
+                {% if usuario.idUsuario == reserva.idUsuario: %}
+                    {{ usuario.nome }}
+                {% endif %}
+              {% endfor %}</td>
+          <td><a href="{{ url_for('deletarReserva',id=reserva.idReserva) }}" class="btn btn-danger">Excluir</a></td>
+          <td><a href="{{ url_for('editarReserva',id=reserva.idReserva) }}" class="btn btn-secondary">Editar</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

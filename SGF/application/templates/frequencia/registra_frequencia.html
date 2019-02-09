@@ -1,0 +1,50 @@
+{% extends "layout/layout.html" %}
+{% block title %}Registro de Frequência{% endblock %}
+{% block breadcrumbs %}Registrar Frequência{% endblock %}
+{% block body %}
+<div class="card">
+  <div class="card-header"><b>Registro de Frequência</b></div>
+  <div class="card-body">
+    <form action="{{ url_for('registrarFrequencia') }}" method="POST">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">CPF</th>
+              <th scope="col">Sócio</th>
+              <th scope="col" class="text-center" width="80">Presente</th>
+              <th scope="col" class="text-center" width="80">Ausente</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for socio in socios: %}
+            <tr>
+              <th scope="row">{{ socio.cpf }}</th>
+              <td>{{ socio.nome }}</td>
+              <td>
+                <div align="center">
+                  <label>
+                    <input type="radio" class="option-input radio" name="{{ socio.idSocio }}" value="Presente" checked/>
+                  </label>
+                </div>
+              </td>
+              <td>
+                <div align="center">
+                  <label>
+                    <input type="radio" class="option-input radio" name="{{ socio.idSocio }}" value="Ausente"/>
+                  </label>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table><hr>
+      </div>
+      <div class="text-right">
+        <a href="{{ url_for('home') }}"><input class="btn btn-secondary" type="button" value="Cancelar"></a>
+        <input class="btn btn-primary" type="submit" value="Registrar Frequência">
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
