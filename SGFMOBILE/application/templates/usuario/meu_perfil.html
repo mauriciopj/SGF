@@ -1,0 +1,30 @@
+{% extends "layout/layout.html" %}
+{% block title %}Meu Perfil{% endblock %}
+{% block breadcrumbs %}Meu Perfil{% endblock %}
+{% block body %}
+<div class="card card-register">
+  <div class="card-header"><b>Meu Perfil</b></div>
+  <div class="card-body">
+    <font size="4" color="#059FF8">Dados do usuário:</font><hr>
+    <div class="row">
+      <div class="col-md-6">
+        <label>{{ user[idUsuario]['nome'] }}</label>
+      </div>
+      <div class="col-md-6">
+        <label>{{user[idUsuario]['telefone'] }}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label>{{ user[idUsuario]['email'] }}</label>
+      </div>
+      <div class="col-md-12">
+        <label>{{ user[idUsuario]['endereco'] }}</label>
+      </div>
+    </div>
+    <div class="text-right">
+      <a href="{{ url_for('editarUsuario',id=user[idUsuario]['idUsuario']) }}"><input class="btn btn-primary" type="button" value="Editar"></a>
+    </div>
+  </div>
+</div>
+{% endblock %}
